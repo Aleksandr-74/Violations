@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block content %}
+<table>
+    <tr>
+        <th>№</th>
+        <th>Имя</th>
+        <th>Гос номер</th>
+        <th>Нарушение</th>
+        <th>Сумма</th>
+        <th>Дата нарушения</th>
+        <th>Дата оплаты</th>
+    </tr>
+    {% for fines in current_fine %}
+        <tr>
+        {% for i in fines %}
+        {% if  i  == None %}
+           <td>Неоплачен</td>
+         {% else %}
+            <td>{{ i }}</td>
+         {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

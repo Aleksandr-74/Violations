@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container-fluid mt-5">
+{% for cat, message in get_flashed_messages(True) %}
+    <div class="alert alert-{{cat}} alert-dismissable">
+        {{ message }}
+    </div>
+{% endfor %}
+    <form action="{{ url_for('auth.register') }}" method="POST" role="form" class="mb-3 col-6">
+    {{ form.csrf_token }}
+        <div class="form_item, form-control me-2">
+            {{ form.username.label(class_="") }} {{ form.username(class_="form-control") }}
+            {{ form.password.label(class_="") }} {{ form.password(class_="form-control") }}
+            {{ form.confirm.label(class_="") }} {{ form.confirm(class_="form-control") }}
+            {{form.submit(class="btn btn-outline-success")}}
+        </div>
+    </form>
+</div>
+{% endblock %}

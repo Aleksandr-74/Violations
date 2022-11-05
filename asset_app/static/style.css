@@ -1,0 +1,9 @@
+.content{
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav{
+    justify-content: space-between;
+}

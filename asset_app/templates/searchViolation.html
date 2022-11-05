@@ -1,0 +1,61 @@
+{% extends 'base.html'%}
+
+{% block forma %}
+<div class="container-fluid">
+    <form action="" method="POST" role="form" class="mb-3 col-6">
+        {{ form.csrf_token() }}
+        <div class="form_item, form-control me-2">
+        {% for field in form if field.name != "csrf_token" %}
+            {% if field.name != 'submit'%}
+                  {{ field.label() }}
+            {% endif %}
+            {% if field.name != 'submit'%}
+                {{ field(class="form-control me-2") }}
+            {% else %}
+            {{ field(class="btn btn-outline-success") }}
+            {% endif %}
+                {% for error in field.error %}
+                    <div class="form_error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+        </div>
+        {% endfor %}
+    </form>
+
+</div>
+{% endblock %}
+<hr>
+
+
+
+{% block content %}
+{% if current_fine != False and current_fine != None %}
+<table>
+    <tr>
+        <th>ID штрафа</th>
+        <th>Имя</th>
+        <th>Гос номер</th>
+        <th>Нарушение</th>
+        <th>Сумма</th>
+        <th>Дата нарушения</th>
+        <th>Дата оплаты</th>
+    </tr>
+    {% for fines in current_fine %}
+        <tr>
+        {% for i in fines %}
+         {% if  i  == None %}
+           <td>Неоплачен</td>
+         {% else %}
+            <td>{{ i }}</td>
+         {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<button name="submit_payment"><a href="/payment">Оплатить</a> </button>
+{% elif current_fine == None %}
+<h5>Номер не найден</h5>
+{% endif %}
+
+{% endblock %}

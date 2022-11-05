@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="content">
+    <header>
+        <div class="top_header">
+            <div class="top_line">
+            </div>
+            <div class="nav">
+                <nav class="inner">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/list_fines">Список штрафов</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fines">Назначения штрафа</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/search">Поиск штрафов</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="/payment">Oплатить штраф</a>
+                        </li>
+                    </ul>
+                </nav>
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Зарегитсрироватся </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Войти</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="content">
+
+        {% block content %}
+        {% endblock %}
+        {% block forma %}
+        {% endblock %}
+
+
+</div>
+{% block scripts %}
+        <script>
+            document.querySelector('ul a[href="' + location.pathname + '"]').className = 'nav-link active';
+        </script>
+{% endblock %}
+
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+</body>
+</html>
+

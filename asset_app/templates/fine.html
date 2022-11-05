@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block forma %}
+<div class="container-fluid">
+     <form action="" method="POST" role="form" class="mb-3 col-6">
+        {{ form.csrf_token() }}
+         <div class="form_item, form-control me-2">
+             {% for field in form if field.name != "csrf_token" %}
+             {% if field.name != 'submit'%}
+                  {{ field.label() }}
+             {% endif %}
+             {% if field.name != 'submit'%}
+                {{ field(class="form-control me-2") }}
+             {% else %}
+                {{ field(class="btn btn-outline-success") }}
+             {% endif %}
+             {% for error in field.error %}
+                <div class="form_error">
+                    {{ error }}
+                </div>
+             {% endfor %}
+
+        {% endfor %}
+         </div>
+    </form>
+</div>
+{% endblock %}

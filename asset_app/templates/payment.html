@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block forma %}
+<div class="container-fluid">
+  {% for cat, message in get_flashed_messages(True) %}
+    <div class="alert alert-{{cat}} alert-dismissable">
+        {{ message }}
+    </div>
+ {% endfor %}
+    <form action="" method="POST" role="form" class="mb-3 col-6">
+        {{ form.csrf_token() }}
+        <div class="form_item, form-control me-2">
+        {% for field in form if field.name != "csrf_token" %}
+            {% if field.name != 'submit'%}
+                  {{ field.label() }}
+            {% endif %}
+            {% if field.name != 'submit'%}
+                {{ field(class="form-control me-2") }}
+            {% else %}
+            {{ field(class="btn btn-outline-success") }}
+            {% endif %}
+                {% for error in field.error %}
+                    <div class="form_error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+        </div>
+        {% endfor %}
+    </form>
+
+</div>
+{% endblock %}
+<hr>
